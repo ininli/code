@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Jubeat Web</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<style type="text/css">
+			.no{
+				width: 220px;
+				height:220px;
+				background-color: #A9A9A9;
+			}
+			.green{
+				width: 220px;
+				height:220px;
+				background-color: #51ff26;
+			}
+			@-webkit-keyframes go{
+				0% { background-color: #A9A9A9; }
+  				100% { background-color: #ffffff; }
+			}
+			.change{
+				animation-name:go;
+				animation-duration: 1s;
+			}
+		</style>
+
+	</head>
+	<body background="https://remywiki.com/images/thumb/4/4f/Jubeat_saucer_fulfill.png/500px-Jubeat_saucer_fulfill.png">
+		<audio>
+			<source src="inin.mp3" type="audio/mpeg"> 
+		</audio>
+		<center>
+			<table border="4">
+				<tr>
+					<td><div id = "a" class = "no"></div></td>
+					<td><div id = "b" class = "no"></div></td>
+					<td><div id = "c" class = "no"></div></td>
+					<td><div id = "d" class = "no"></div></td>
+				</tr>
+				<tr>
+					<td><div id = "e" class = "no"></div></td>
+					<td><div id = "f" class = "no"></div></td>
+					<td><div id = "g" class = "no"></div></td>
+					<td><div id = "h" class = "no"></div></td>
+				</tr>
+				<tr>
+					<td><div id = "i" class = "no"></div></td>
+					<td><div id = "j" class = "no"></div></td>
+					<td><div id = "k" class = "no"></div></td>
+					<td><div id = "l" class = "no"></div></td>
+				</tr>
+				<tr>
+					<td><div id = "m" class = "no"></div></td>
+					<td><div id = "n" class = "no"></div></td>
+					<td><div id = "o" class = "no"></div></td>
+					<td><div id = "p" class = "no"></div></td>
+				</tr>
+			</table>
+		</center>
+		<audio style="display:none;" autoplay ="1">
+			<source src="ininin.mp3" type="audio/mpeg">
+		</audio>
+		<script type="text/javascript">
+		var score=0;
+        container = document.createElement( 'div' );
+    	document.body.appendChild( container );
+	    var info = document.createElement( 'div' );
+	    info.style.position = 'absolute';
+	    info.style.color = 'red';
+	    info.style.top = '120px';
+	    info.style.width = '100%';
+	    info.style.textAlign = 'left';
+	    info.innerHTML = 'Score : 0';
+	    container.appendChild( info );
+		var ran=['#a','#b','#c','#d','#e','#f','#g','#h','#i','#j','#k','#l','#m','#n','#o','#p'];
+		var jizz=[];
+		var spawn = setInterval(function(){
+	        ranNum = Math.floor(Math.random()*16);
+	        $(ran[ranNum]).addClass('change');
+	        jizz.push(ranNum);
+			setTimeout(function() {
+				$(ran[jizz.shift()	]).removeClass('change');
+			}, 1000);
+   		}, 1000);
+		var score =0;
+		
+		document.addEventListener('keydown', onDocumentKeyDown, false);
+		function onDocumentKeyDown(event){
+			var x = '';
+			if((event.keyCode || event.which) == 52) x = '#a';
+			if((event.keyCode || event.which) == 53) x = '#b';
+			if((event.keyCode || event.which) == 54) x = '#c';
+			if((event.keyCode || event.which) == 55) x = '#d';
+			if((event.keyCode || event.which) == 82) x = '#e';
+			if((event.keyCode || event.which) == 84) x = '#f';
+			if((event.keyCode || event.which) == 89) x = '#g';
+			if((event.keyCode || event.which) == 85) x = '#h';
+			if((event.keyCode || event.which) == 70) x = '#i';
+			if((event.keyCode || event.which) == 71) x = '#j';
+			if((event.keyCode || event.which) == 72) x = '#k';
+			if((event.keyCode || event.which) == 74) x = '#l';
+			if((event.keyCode || event.which) == 86) x = '#m';
+			if((event.keyCode || event.which) == 66) x = '#n';
+			if((event.keyCode || event.which) == 78) x = '#o';
+			if((event.keyCode || event.which) == 77) x = '#p';
+			if(x == '') return;
+			$(x).addClass('green');
+			setTimeout(function() {
+				$(x).removeClass('green');
+			}, 100);
+			inin(x);
+		}
+		// setInterval(function(){
+		// 		$(ran[ranNum]).addClass('change');
+		// 		setTimeout(function() {
+		// 		$(x).removeClass('green');
+		// 		}, 100);
+		// 		$(x).removeClass('change');
+				
+		// },200);
+		function inin(x){
+		 		if(ran[ranNum]==x) {score+=100;}
+		 		else score-=100;
+		 		info.innerHTML = 'Score : '+score;
+			}
+	</script>
+	</body>
+</html>
